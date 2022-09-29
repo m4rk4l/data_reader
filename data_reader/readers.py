@@ -66,3 +66,4 @@ def read_with_unique_column_values(spark_inst, location, _format, unique_value_c
     duplicates = df.groupBy(*unique_value_columns).count().filter("count > 1")
     if duplicates.count():
         raise ValueError(f"Data has duplicates for columns: {unique_value_columns}")
+    return df
